@@ -1,4 +1,60 @@
 {
-  "updated": null,
-  "stories": []
+  "updated": "2026-07-11",
+  "stories": [
+    {
+      "id": "news-20260711-1",
+      "date": "2026-07-11",
+      "type": "news",
+      "category": "tech",
+      "title": "Apple Sues OpenAI Over Hardware Secrets in a Partnership Gone Cold",
+      "place": "San Francisco",
+      "story": "Two years ago, Apple and OpenAI were holding hands on stage: ChatGPT baked into the iPhone, Sam Altman and Tim Cook at White House dinners. On Friday, Apple filed suit against OpenAI in federal court in Northern California, alleging a coordinated, company-wide theft of trade secrets — hardware designs, manufacturing processes, and supply chain strategies — all to accelerate OpenAI's push into consumer devices.\n\nThe mechanism alleged is remarkably concrete. Tang Tan, a 24-year Apple veteran who led product design for the iPhone and Apple Watch before becoming OpenAI's chief hardware officer, is accused of using Apple's internal project codenames during recruiting interviews, coaching departing employees on how to evade Apple's exit security checks, and asking job candidates to bring actual hardware components — batteries, logic boards — into interviews for \"show and tell.\" A second named defendant, engineer Chang Liu, allegedly exploited an authentication bug in a kept Apple laptop to download dozens of confidential hardware files after already joining OpenAI.\n\nThe lawsuit claims more than 400 former Apple employees now work at OpenAI — a talent migration that transformed from a competitive nuisance into a legal crisis. Apple sent a letter to OpenAI in February raising its concerns and received no response.\n\nThe deeper irony: Apple's next version of Siri will run on Google's Gemini, not OpenAI's models — meaning the partnership has already quietly collapsed at the technical level. The legal filing is in part a discovery mechanism: by going to court, Apple gains subpoena power to learn the full scope of what left its walls. OpenAI, meanwhile, is weeks away from unveiling its first hardware device. The suit lands at the worst possible moment.",
+      "hook": "When your AI partner starts hiring your engineers to reverse-engineer your products, it turns out 'partnership' was always a competitive reconnaissance mission.",
+      "source": "CNBC, TechCrunch, NBC News — July 10–11, 2026"
+    },
+    {
+      "id": "news-20260711-2",
+      "date": "2026-07-11",
+      "type": "news",
+      "category": "tech",
+      "title": "SK Hynix Bets $26 Billion That AI Breaks Memory's Boom-Bust Curse",
+      "place": "Nasdaq, Seoul",
+      "story": "For most of its history, the memory chip business ran on a merciless cycle: prices soared, every manufacturer poured money into new factories, supply flooded the market, prices crashed, and half the industry bled cash for years. Every schooled investor knew the pattern. Thursday's Nasdaq debut by SK Hynix is essentially a $26.5 billion wager that this time is different.\n\nThe South Korean chipmaker raised $26.5 billion through American depositary receipts — the largest U.S. listing ever by a foreign company, second in overall U.S. history only to SpaceX's $86 billion IPO last month. Shares rose nearly 13% on day one, and the offering was reported to be more than seven times oversubscribed. The mechanism behind all this appetite is high-bandwidth memory, or HBM: vertically stacked DRAM chips that sit directly beside Nvidia's AI accelerators and feed them data fast enough to keep those processors from starving. SK Hynix controls roughly 60% of the global HBM market, and, critically, its HBM4 generation reached mass production ahead of rivals. Every major AI processor ships with its chips inside.\n\nWhat changed is not just demand but the structure of demand. Memory revenue was historically commoditized; today SK Hynix posted an operating margin above 70% in Q1 2026, numbers that belong in software, not silicon. Annual revenue nearly tripled from 2023 to 2025. The Nasdaq listing also solves a chronic Korean ailment: the so-called 'Korea Discount,' where shares in Seoul traded well below peers like Micron despite SK Hynix being significantly more profitable — a penalty analysts blame on chaebol governance opaque to foreign investors.\n\nThe implied question the market is now pricing is whether AI infrastructure spending is a permanent floor under memory demand or just the longest cycle peak ever seen. If it is the former, SK Hynix is an infrastructure company wearing a chipmaker's jersey. If the latter, the company just handed the old boom-bust cycle $26.5 billion of fresh ammunition.",
+      "hook": "Memory used to trade like corn; now it trades like a cloud monopoly — and SK Hynix just made Wall Street bet on which it really is.",
+      "source": "Fortune / Bloomberg, July 10–11, 2026"
+    },
+    {
+      "id": "news-20260711-3",
+      "date": "2026-07-11",
+      "type": "news",
+      "category": "business",
+      "title": "Kroger Tries Grocery Consolidation Again, Smaller and Smarter",
+      "place": "Pittsburgh / Cincinnati",
+      "story": "Two years ago, Kroger tried to swallow Albertsons whole — a $25 billion mega-merger that would have combined the two largest pure-play supermarket chains in America. Federal judges said no. The deal collapsed in 2024 after courts concluded it would harm competition, and the two companies now remain locked in litigation over who is to blame for the wreckage.\n\nSo Kroger's new CEO Greg Foran, a former Walmart US chief, tried a different angle. On July 1, Kroger announced a $1.65 billion deal to acquire Giant Eagle, the Pittsburgh-based regional grocer that has operated as a family-owned business since 1931. The price — $1.25 billion in cash plus roughly $400 million in assumed liabilities — is a fraction of the Albertsons gambit. But the strategic logic is precise: Giant Eagle runs 197 supermarkets and 11 standalone pharmacies across western Pennsylvania, northern Ohio, West Virginia, Maryland, and Indiana, territories where Kroger has thin coverage. It generates nearly $9 billion in annual sales.\n\nThe deal signals a revised theory of grocery consolidation. The Albertsons attempt was a frontal assault on scale — two giants merging to fight Walmart on price. Regulators killed it. The Giant Eagle move is a flank attack: filling geographic gaps, inheriting a loyal regional customer base, and absorbing a pharmacy network without triggering the same antitrust alarm bells. Analysts at GlobalData called it a \"lighter version\" of the Albertsons deal — meaningfully expansionary but structurally far less provocative to regulators.\n\nThe risk is execution. Foran must integrate a $9-billion-a-year operation as his first major act in the CEO chair. And Giant Eagle has been losing market share to Walmart in its own backyard for years — the very problem Foran spent a career creating at his former employer.",
+      "hook": "Kroger couldn't beat Walmart by getting bigger once, so now it's trying to get smarter about where it grows.",
+      "source": "Kroger IR / Ohio Capital Journal / FoodNavigator-USA"
+    },
+    {
+      "id": "news-20260711-4",
+      "date": "2026-07-11",
+      "type": "news",
+      "category": "business",
+      "title": "Goldman Takes the Keys to $70 Billion in Worker Retirements",
+      "place": "New York",
+      "story": "There is a quiet but accelerating transfer of power happening inside corporate America, and most workers whose savings are involved will never hear about it. Goldman Sachs announced this week that Verizon and Lockheed Martin have handed it $70 billion in retirement assets to manage — $30 billion in traditional pensions and $40 billion in Verizon 401(k) accounts. Goldman will serve as what the industry calls an Outsourced Chief Investment Officer, or OCIO: the corporation fires its in-house investment staff and Goldman runs the whole thing.\n\nThe mechanism driving this is straightforward. Pension portfolios have grown far more complex over the past decade, now spanning private equity, infrastructure, and credit alongside public stocks and bonds. Most HR departments were never built to navigate that terrain. So corporations are consolidating — handing the keys to one specialist and washing their hands of the day-to-day. Both Verizon and Lockheed Martin have spent years offloading pension liabilities to insurers; this OCIO deal is the next step, outsourcing not the obligation itself but its management.\n\nFor Goldman, the logic is even cleaner. Trading desks boom and bust with markets. OCIO mandates are sticky — they generate steady fee revenue for years, sometimes decades, regardless of deal flow or volatility. Goldman's OCIO unit already oversaw $480 billion before this deal, built on prior wins from UPS, Shell, and Eli Lilly. At $3.7 trillion in total assets under supervision, it is quietly becoming as much an asset management giant as an investment bank.\n\nThe implication: when a telecom company and a defense contractor both decide that managing their own workers' retirements is no longer a core competency, it signals how thoroughly the financial industry has become the operating system beneath the rest of the economy.",
+      "hook": "Goldman is no longer just your company's banker — it may also be the quiet manager of your retirement.",
+      "source": "CNBC / Goldman Sachs Asset Management press release"
+    },
+    {
+      "id": "news-20260711-5",
+      "date": "2026-07-11",
+      "type": "news",
+      "category": "finance",
+      "title": "America's Stock Rally Is Running on $1.4 Trillion in Borrowed Money",
+      "place": "Wall Street",
+      "story": "The bull market has a hidden engine, and it runs on debt. Margin debt — money investors borrow from their brokers to buy securities — hit a record $1.42 trillion in May 2026, a 53.7% surge from a year earlier. That is not a rounding error. For context, the previous cycle peaks came in at roughly $900 billion.\n\nThe mechanism is straightforward and old: rising prices allow investors to borrow more against their portfolios, which fuels more buying, which lifts prices further. Leveraged exchange-traded funds — products that deliver double or triple a daily index return — nearly doubled their assets to a record $220 billion between late March and early June, with over $38 billion concentrated in semiconductor stocks alone. Hedge funds now carry an estimated $10 trillion in gross equity exposure.\n\nThe more alarming figure is the net credit balance: investor cash holdings minus what they owe. In May it reached a record negative $991.7 billion — meaning the aggregate account holder owes nearly a trillion dollars more than they hold in ready cash. That is the thinnest cushion against forced selling ever recorded.\n\nThe fragility is structural, not incidental. When a broker issues a margin call, the investor must sell — not because they want to, but because the rules require it. Enough simultaneous calls create a cascade: forced selling drives prices down, which triggers more calls, which forces more selling. With the Federal Reserve signaling it may hike rates this year to fight persistent inflation, and with Q2 bank earnings due next week, the system is entering a stretch of maximum vulnerability. The market may keep climbing. But the ladder it is standing on has never been taller, and the ground below has never been farther away.",
+      "hook": "The rally isn't irrational exuberance — it's leveraged exuberance, which is the same thing but with a margin call attached.",
+      "source": "FINRA / Advisor Perspectives, RIA Advisors, Wall Street Journal"
+    }
+  ]
 }
