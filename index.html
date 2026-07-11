@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="dark" />
+<title>Dateline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #12151c;
+    --ink-2: #191d26;
+    --cream: #e9e6dd;
+    --cream-dim: rgba(233, 230, 221, 0.55);
+    --cream-faint: rgba(233, 230, 221, 0.35);
+    --hairline: rgba(233, 230, 221, 0.13);
+    --teal: #3fa39c;
+    --brass: #c99a4a;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { background: var(--ink); }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.68;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- scroll progress bar ---- */
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: var(--brass);
+    z-index: 30;
+    transition: width 80ms linear;
+  }
+
+  /* ---- header ---- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(18, 21, 28, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .header-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .brand span { color: var(--brass); }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #counter {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    color: var(--cream-dim);
+    white-space: nowrap;
+  }
+  #unread-toggle {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 6px 10px;
+    background: transparent;
+    color: var(--cream-dim);
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  #unread-toggle.on {
+    color: var(--ink);
+    background: var(--brass);
+    border-color: var(--brass);
+    font-weight: 500;
+  }
+
+  /* ---- layout ---- */
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 8px 20px 96px;
+  }
+
+  /* ---- section labels (thin, inline — no divider screens) ---- */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 8px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .section-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+  }
+  .section-label.news { color: var(--teal); }
+  .section-label.catalogue { color: var(--brass); }
+
+  /* ---- story card ---- */
+  article.story {
+    background: var(--ink-2);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 26px 24px 14px;
+    margin: 18px 0;
+    transition: opacity 0.4s ease;
+  }
+  article.story.is-read { opacity: 0.45; }
+
+  .stamp-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .stamp {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid;
+    border-radius: 2px;
+    transform: rotate(-1.2deg);
+  }
+  .story[data-type="news"] .stamp { color: var(--teal); border-color: rgba(63, 163, 156, 0.55); }
+  .story[data-type="insight"] .stamp { color: var(--brass); border-color: rgba(201, 154, 74, 0.55); }
+  .category {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-faint);
+  }
+
+  h2.title {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 27px;
+    line-height: 1.22;
+    letter-spacing: -0.005em;
+    margin-bottom: 14px;
+  }
+
+  .body-text p { margin-bottom: 1em; }
+  .body-text p:last-child { margin-bottom: 0; }
+
+  .hook {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 18.5px;
+    line-height: 1.45;
+    color: var(--cream);
+    margin: 20px 0 4px;
+    padding: 2px 0 2px 16px;
+    border-left: 3px solid;
+  }
+  .story[data-type="news"] .hook { border-color: var(--teal); }
+  .story[data-type="insight"] .hook { border-color: var(--brass); }
+
+  .source {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--cream-faint);
+    margin-top: 14px;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding: 12px 0 6px;
+    border-top: 1px solid var(--hairline);
+  }
+  .read-state {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    color: var(--cream-faint);
+  }
+  .story.is-read .read-state { color: var(--brass); }
+  .mark-read {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.15em;
+    padding: 6px 12px;
+    background: transparent;
+    color: var(--cream-dim);
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .mark-read:hover { color: var(--cream); border-color: var(--cream-dim); }
+
+  /* ---- empty / status states ---- */
+  .empty {
+    margin: 26px 0;
+    padding: 34px 24px;
+    border: 1px dashed var(--hairline);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .empty .empty-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .empty .empty-sub {
+    font-size: 14px;
+    color: var(--cream-dim);
+    line-height: 1.6;
+  }
+  .empty .empty-sub code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--brass);
+  }
+
+  footer.page-end {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--cream-faint);
+    text-align: center;
+  }
+
+  @media (max-width: 420px) {
+    body { font-size: 16px; }
+    h2.title { font-size: 24px; }
+    .header-inner { padding: 12px 16px; }
+    main { padding: 8px 16px 80px; }
+    article.story { padding: 22px 18px 12px; }
+  }
+</style>
+</head>
+<body>
+  <div id="progress"></div>
+  <header>
+    <div class="header-inner">
+      <div class="brand">Date<span>line</span></div>
+      <div class="header-right">
+        <div id="counter">–/– READ</div>
+        <button id="unread-toggle" type="button">UNREAD ONLY</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app">
+    <div class="empty" id="loading">
+      <div class="empty-title">Loading…</div>
+    </div>
+  </main>
+
+  <footer class="page-end">DATELINE · NEW STORIES DAILY · 7 AM IST</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  const READ_KEY = "dateline:read";
+  const UNREAD_ONLY_KEY = "dateline:unreadOnly";
+
+  /** @type {Set<string>} ids of stories marked read on this device */
+  let readSet = loadReadSet();
+  let unreadOnly = loadUnreadOnly();
+  let allStories = { news: [], catalogue: [] };
+  let observer = null;
+
+  function loadReadSet() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(READ_KEY) || "[]");
+      return new Set(Array.isArray(raw) ? raw : []);
+    } catch { return new Set(); }
+  }
+  function saveReadSet() {
+    try { localStorage.setItem(READ_KEY, JSON.stringify([...readSet])); } catch {}
+  }
+  function loadUnreadOnly() {
+    try {
+      const raw = localStorage.getItem(UNREAD_ONLY_KEY);
+      return raw === null ? true : raw === "true"; // default: unread only
+    } catch { return true; }
+  }
+  function saveUnreadOnly() {
+    try { localStorage.setItem(UNREAD_ONLY_KEY, String(unreadOnly)); } catch {}
+  }
+
+  async function fetchJson(path) {
+    const res = await fetch(`${path}?v=${Date.now()}`, { cache: "no-store" });
+    if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`);
+    return res.json();
+  }
+
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function stampText(story) {
+    const when = story.era || story.date || "";
+    return [story.place, when].filter(Boolean).join(" · ").toUpperCase();
+  }
+
+  function renderStory(story) {
+    const card = el("article", "story");
+    card.dataset.type = story.type === "news" ? "news" : "insight";
+    card.dataset.id = story.id;
+    if (readSet.has(story.id)) card.classList.add("is-read");
+
+    const stampRow = el("div", "stamp-row");
+    stampRow.appendChild(el("span", "stamp", stampText(story)));
+    stampRow.appendChild(el("span", "category", story.category || ""));
+    card.appendChild(stampRow);
+
+    card.appendChild(el("h2", "title", story.title));
+
+    const body = el("div", "body-text");
+    String(story.story || "").split(/\n\n+/).forEach((para) => {
+      if (para.trim()) body.appendChild(el("p", null, para.trim()));
+    });
+    card.appendChild(body);
+
+    if (story.hook) card.appendChild(el("div", "hook", story.hook));
+    if (story.source) card.appendChild(el("div", "source", `SOURCE — ${story.source}`));
+
+    const footer = el("div", "card-footer");
+    footer.appendChild(el("span", "read-state", readSet.has(story.id) ? "READ ✓" : "UNREAD"));
+    const btn = el("button", "mark-read", readSet.has(story.id) ? "MARK UNREAD" : "MARK READ");
+    btn.type = "button";
+    btn.addEventListener("click", () => toggleRead(story.id, card));
+    footer.appendChild(btn);
+    card.appendChild(footer);
+
+    if (observer && !readSet.has(story.id)) observer.observe(footer);
+    return card;
+  }
+
+  function markRead(id, card) {
+    if (readSet.has(id)) return;
+    readSet.add(id);
+    saveReadSet();
+    updateCardState(card);
+    updateCounter();
+  }
+
+  function toggleRead(id, card) {
+    if (readSet.has(id)) {
+      readSet.delete(id);
+      // user explicitly wants this unread — don't let the auto-marker
+      // instantly flip it back while the footer is still on screen
+      card.dataset.manualUnread = "1";
+    } else {
+      readSet.add(id);
+      delete card.dataset.manualUnread;
+    }
+    saveReadSet();
+    updateCardState(card);
+    updateCounter();
+  }
+
+  function updateCardState(card) {
+    const id = card.dataset.id;
+    const isRead = readSet.has(id);
+    card.classList.toggle("is-read", isRead);
+    const state = card.querySelector(".read-state");
+    const btn = card.querySelector(".mark-read");
+    if (state) state.textContent = isRead ? "READ ✓" : "UNREAD";
+    if (btn) btn.textContent = isRead ? "MARK UNREAD" : "MARK READ";
+    const footer = card.querySelector(".card-footer");
+    if (observer && footer) {
+      if (isRead || card.dataset.manualUnread) observer.unobserve(footer);
+      else observer.observe(footer);
+    }
+  }
+
+  function updateCounter() {
+    const total = allStories.news.length + allStories.catalogue.length;
+    const ids = new Set([...allStories.news, ...allStories.catalogue].map((s) => s.id));
+    const read = [...readSet].filter((id) => ids.has(id)).length;
+    document.getElementById("counter").textContent = `${read}/${total} READ`;
+  }
+
+  function updateToggle() {
+    const btn = document.getElementById("unread-toggle");
+    btn.classList.toggle("on", unreadOnly);
+  }
+
+  function emptyState(title, sub) {
+    const box = el("div", "empty");
+    box.appendChild(el("div", "empty-title", title));
+    const subEl = el("div", "empty-sub");
+    subEl.innerHTML = sub;
+    box.appendChild(subEl);
+    return box;
+  }
+
+  function sortCatalogue(stories) {
+    // oldest-first by publish date, stable within a day
+    return [...stories].sort((a, b) => String(a.date || "").localeCompare(String(b.date || "")));
+  }
+
+  function render() {
+    const app = document.getElementById("app");
+    app.innerHTML = "";
+
+    if (observer) observer.disconnect();
+    observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 1) {
+          const card = entry.target.closest("article.story");
+          if (card) markRead(card.dataset.id, card);
+        }
+      }
+    }, { threshold: 1.0 });
+
+    // ---- Today's Dispatch ----
+    const newsAll = allStories.news;
+    const news = unreadOnly ? newsAll.filter((s) => !readSet.has(s.id)) : newsAll;
+    const newsLabel = el("div", "section-label news");
+    const dateStr = (newsAll[0] && newsAll[0].date) || "";
+    newsLabel.textContent = `Today's Dispatch${dateStr ? " · " + dateStr : ""}`;
+    app.appendChild(newsLabel);
+
+    if (newsAll.length === 0) {
+      app.appendChild(emptyState("No dispatch yet", "Run the <code>Daily content refresh</code> workflow once to seed today's stories."));
+    } else if (news.length === 0) {
+      app.appendChild(emptyState("Dispatch cleared", "You've read today's news. Fresh stories arrive at 7 AM."));
+    } else {
+      news.forEach((s) => app.appendChild(renderStory(s)));
+    }
+
+    // ---- The Catalogue ----
+    const catAll = sortCatalogue(allStories.catalogue);
+    const cat = unreadOnly ? catAll.filter((s) => !readSet.has(s.id)) : catAll;
+    const catLabel = el("div", "section-label catalogue");
+    catLabel.textContent = "The Catalogue";
+    app.appendChild(catLabel);
+
+    if (catAll.length === 0) {
+      app.appendChild(emptyState("The library is empty", "Run the <code>Daily content refresh</code> workflow to begin collecting stories."));
+    } else if (cat.length === 0) {
+      app.appendChild(emptyState("All caught up", "You've read the entire catalogue. New stories arrive at 7 AM."));
+    } else {
+      cat.forEach((s) => app.appendChild(renderStory(s)));
+    }
+
+    updateCounter();
+    updateToggle();
+  }
+
+  function updateProgress() {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+    document.getElementById("progress").style.width = `${Math.min(100, Math.max(0, pct))}%`;
+  }
+
+  async function boot() {
+    document.getElementById("unread-toggle").addEventListener("click", () => {
+      unreadOnly = !unreadOnly;
+      saveUnreadOnly();
+      render();
+    });
+    window.addEventListener("scroll", updateProgress, { passive: true });
+
+    try {
+      const [news, catalogue] = [
+        await fetchJson("data/news.json"),
+        await fetchJson("data/catalogue.json"),
+      ];
+      allStories.news = Array.isArray(news.stories) ? news.stories : [];
+      allStories.catalogue = Array.isArray(catalogue.stories) ? catalogue.stories : [];
+      render();
+    } catch (err) {
+      const app = document.getElementById("app");
+      app.innerHTML = "";
+      app.appendChild(emptyState("Couldn't load stories", `Check that <code>data/news.json</code> and <code>data/catalogue.json</code> exist. (${String(err && err.message || err)})`));
+    }
+    updateProgress();
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>

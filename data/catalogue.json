@@ -1,0 +1,125 @@
+{
+  "updated": "2026-07-11",
+  "stories": [
+    {
+      "id": "cat-seed-001",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "history",
+      "title": "The prisoners who leaked paper to the West",
+      "place": "Samarkand",
+      "era": "751 AD",
+      "story": "In 751, an Abbasid army met a Tang Chinese force at the Talas River in Central Asia — one of the only times the Islamic and Chinese empires ever fought directly. The Arabs won. Among the prisoners marched back to Samarkand, tradition holds, were Chinese artisans who knew a secret their empire had guarded for centuries: how to make paper.\n\nUntil then, the lands west of China wrote on papyrus, which cracked and frayed, or parchment, which required killing an animal for a few pages. Paper was different — cheap, smooth, and made from rags and plant fiber that existed everywhere. Samarkand became the paper capital of the Islamic world, Baghdad opened its own mills within decades, and suddenly a civilization could afford to write everything down.\n\nWhat followed was an explosion of record-keeping: contracts, tax rolls, bank drafts (the word 'check' likely descends from the Arabic 'sakk'), translations of Greek science, and libraries holding hundreds of thousands of volumes while Europe's largest monastic collections held a few hundred. Paper reached Europe through Islamic Spain roughly four centuries later, arriving just in time to feed a German goldsmith's printing press.\n\nOne lost battle on a forgotten river, and the losing side's technology went on to rewire three civilizations.",
+      "hook": "Empires can guard a secret for five hundred years and lose it in one afternoon — ideas escape through prisoners.",
+      "source": "Jonathan Bloom, Paper Before Print"
+    },
+    {
+      "id": "cat-seed-002",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "geopolitics",
+      "title": "The strait that has a hand on Asia's throat",
+      "place": "Malacca",
+      "era": "1511",
+      "story": "Between Sumatra and the Malay Peninsula runs a channel that narrows, at one point, to less than two miles of navigable water. For a thousand years, monsoon winds forced every ship trading between India and China to stop there and wait for the seasons to reverse. Whoever held the Strait of Malacca didn't need an empire — the world's commerce simply queued up at their door to be taxed.\n\nThe Portuguese understood this with brutal clarity. When they seized the port of Malacca in 1511, the apothecary Tomé Pires wrote home: 'Whoever is lord of Malacca has his hand on the throat of Venice' — because spices flowing through the strait, not the Mediterranean, would now set Europe's prices.\n\nFive centuries later the geography hasn't moved. Roughly a quarter of all seaborne trade and the great majority of China's imported oil still passes through that same channel. This single fact explains a surprising amount of modern strategy: why China builds ports in Pakistan and Sri Lanka, why it dreams of a canal across Thailand's Kra Isthmus, why the US Navy patrols Singapore. Planners in Beijing call it the 'Malacca Dilemma' — the fear that a blockade of one strait could strangle a superpower.\n\nMaps age better than treaties.",
+      "hook": "China's entire Belt and Road, one sentence: a superpower trying to escape a two-mile-wide traffic jam.",
+      "source": "Tim Marshall, Prisoners of Geography"
+    },
+    {
+      "id": "cat-seed-003",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "economics",
+      "title": "The king whose generosity crashed gold for a decade",
+      "place": "Cairo",
+      "era": "1324",
+      "story": "When Mansa Musa, ruler of the Mali Empire, passed through Cairo on his pilgrimage to Mecca in 1324, he traveled with a caravan reported in the tens of thousands and camels loaded with gold. He spent it like a man who could not imagine running out — paying triple prices in the markets, handing ingots to officials, showering gifts on every shrine and dignitary in his path.\n\nThe result was recorded by the chronicler al-Umari, who visited Cairo a dozen years later: the price of gold in Egypt had collapsed and, by his account, still hadn't fully recovered. Mali's king had performed, by accident, one of history's cleanest monetary experiments. Gold is not wealth; it's a claim on wealth. Flood a city with it and you don't make the city richer — you make gold cheaper. The bread, the cloth, the land: those stayed scarce, so their gold-prices soared, which is just inflation wearing a crown.\n\nThe elegant footnote: on his return journey, Musa reportedly ran short and borrowed gold back from Cairo's merchants at steep interest — a single traveler acting as both quantitative easing and, on the way home, monetary tightening.\n\nEvery debate about printing money since is this story with better paperwork.",
+      "hook": "Mansa Musa proved it in 1324: money isn't wealth — dump enough of it in one place and it devalues itself.",
+      "source": "Al-Umari, via the SAHO and British Museum accounts"
+    },
+    {
+      "id": "cat-seed-004",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "food",
+      "title": "The publicity stunt that made Europe eat potatoes",
+      "place": "Paris",
+      "era": "1770s",
+      "story": "The potato reached Europe from the Andes in the 1500s and then spent two hundred years being refused. It isn't mentioned in the Bible, it grows in the dirt like something occult, and physicians blamed it for leprosy. Peasants across Europe would plant it for animals and famine, and otherwise not touch it.\n\nThe man who broke the deadlock was a French army pharmacist, Antoine-Augustin Parmentier, who had survived Prussian captivity on almost nothing but potatoes and knew firsthand they were harmless. His genius wasn't agronomy — it was marketing. He served potato dishes to Benjamin Franklin and the court of Louis XVI, and, most famously, planted a potato field outside Paris and posted armed guards around it by day. The guards were quietly withdrawn at night, and locals, now convinced the crop must be valuable, crept in and stole seed potatoes to plant themselves. In Prussia, Frederick the Great ran the same play.\n\nThe stakes were enormous. Potatoes yield several times more calories per acre than wheat and hide underground — armies can burn a wheat field or requisition a granary, but digging up a nation's potatoes is impractical. Northern Europe's population surged in the century that followed, and that surplus of cheap-fed labor walked straight into the new factories.\n\nCheap calories move history more than kings do; sometimes the calories need a con man.",
+      "hook": "Parmentier couldn't convince people to eat potatoes, so he made potatoes look worth stealing — desire is engineered, not argued.",
+      "source": "John Reader, Potato: A History of the Propitious Esculent"
+    },
+    {
+      "id": "cat-seed-005",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "wine",
+      "title": "Every great French vineyard grows on American roots",
+      "place": "Bordeaux",
+      "era": "1870s",
+      "story": "In the 1860s, French vines began dying with no visible cause — leaves yellowing, roots rotting, whole vineyards collapsing outward in rings, like something spreading underground. It took years to identify the killer: phylloxera, a nearly microscopic aphid that had crossed the Atlantic on imported American vine cuttings, possibly aboard the new fast steamships that got them there alive.\n\nFrance descended into agricultural panic. Over roughly three decades the insect destroyed a huge share of the country's vineyards — and the proposed cures form a catalogue of desperation: flooding fields for weeks, injecting the soil with toxic carbon bisulfide, and, in one widely mocked remedy, burying a live toad beneath each vine to draw out the poison.\n\nThe solution, when it came, was almost unbearably ironic. American vines had evolved alongside phylloxera and their roots shrugged it off. So French growers grafted their own noble varieties — Cabernet, Pinot, Chardonnay — onto American rootstock. The French part grows the grapes; the American part touches the soil. It worked, and it became permanent: to this day, nearly every fine vineyard in Europe grows on American roots, because phylloxera is still in the ground, waiting for anyone foolish enough to plant a vine on its own feet.\n\nThe next time someone gets misty about the ancient purity of French terroir, remember what's holding it up.",
+      "hook": "Château Margaux, root to tip: French wine standing on American legs since 1880 — 'purity' rarely survives an audit.",
+      "source": "Christy Campbell, Phylloxera: How Wine Was Saved for the World"
+    },
+    {
+      "id": "cat-seed-006",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "coffee",
+      "title": "Modern finance was brewed in a coffeehouse",
+      "place": "London",
+      "era": "1688",
+      "story": "For most of history, Europeans drank beer and wine all day because water could kill you. Then, in the mid-1600s, coffee arrived — and for the first time, merchants spent their working hours getting sharper instead of drunker.\n\nLondon's coffeehouses charged a penny at the door and were nicknamed 'penny universities': for the price of a cup you got newspapers, gossip, and conversation with whoever sat down next to you. Crucially, each house specialized. Men of science met at the Grecian; book traders at the Chapter. And near the docks, Edward Lloyd's coffeehouse became the place for ship captains, merchants, and men willing to gamble on whether a given voyage would survive.\n\nLloyd competed on information — he compiled arrival lists and shipping intelligence for his customers. Deals emerged organically: a merchant would circulate a paper describing a ship and its cargo, and wealthy patrons would write their names under the risk, each taking a slice for a premium. They were literally 'under-writers.' That coffeehouse became Lloyd's of London, still the center of world insurance three centuries later. Around the corner, Jonathan's coffeehouse ran the same evolution with share prices and became the London Stock Exchange.\n\nNo one designed any of this. Put caffeinated strangers and fresh information in one room for a hundred years, and markets condense out of the steam.",
+      "hook": "Insurance underwriters are named for where they signed a coffeehouse paper: under the risk — finance was brewed, not built.",
+      "source": "Tom Standage, A History of the World in 6 Glasses"
+    },
+    {
+      "id": "cat-seed-007",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "culture",
+      "title": "The week is humanity's oldest unbroken invention",
+      "place": "Babylon",
+      "era": "600s BC",
+      "story": "The year is the sun's, the month is the moon's, the day is the Earth's. The week belongs to nobody — there is no seven-day rhythm anywhere in nature. It is pure social technology, and it has run without interruption for over two and a half thousand years.\n\nThe Babylonians got there first, guided by the seven wandering lights visible to the naked eye — sun, moon, and five planets — and by rough quarters of the lunar month. The Jewish exiles in Babylon wove the seven-day cycle into something stronger: the Sabbath, a day of rest commanded by God, indifferent to what any king wanted. Rome eventually adopted the week, and Constantine fixed Sunday into imperial law in 321 AD.\n\nWhat's remarkable is what failed to kill it. Revolutionary France imposed a ten-day week for over a decade — it collapsed, partly because workers noticed they now rested one day in ten instead of one in seven. The Soviet Union tried five- and six-day continuous work cycles with staggered days off, so factories never stopped; it demoralized everyone, because a rest day you can't share with your family barely counts as rest, and Stalin's government quietly gave up.\n\nEvery civilization that touched the seven-day week kept it. It survives because it was never anyone's property — which meant it was never any revolution's target that mattered.",
+      "hook": "France and the USSR both tried to abolish the seven-day week; workers' families broke both attempts within years.",
+      "source": "Eviatar Zerubavel, The Seven Day Circle"
+    },
+    {
+      "id": "cat-seed-008",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "economics",
+      "title": "Shares were invented to spread the cost of shipwrecks",
+      "place": "Amsterdam",
+      "era": "1602",
+      "story": "A voyage from Amsterdam to the Spice Islands around 1600 took two years, and a meaningful fraction of ships simply never came back — storms, scurvy, pirates, Portuguese cannon. The potential profits were spectacular, but no sane merchant would put his whole fortune under one hull.\n\nThe Dutch solution, in 1602, was the Verenigde Oostindische Compagnie — the VOC — and it contained two inventions that still run the modern world. First: anyone, down to household servants, could buy a share of the company itself, not of a single voyage, so one sinking was averaged against a fleet. Second, and more radical: the shares were transferable. If you needed your money back, you didn't wind down the company — you sold your piece to someone else. Within weeks, a secondary market in VOC paper had formed on an Amsterdam bridge and in the courtyards nearby, and the world had its first stock exchange, complete, within a few years, with futures, options, and short sellers.\n\nThe company itself became a monster — empowered by its charter to wage war, sign treaties, and mint coin in Asia. But the financial machinery outlived the empire it funded. Risk pooling plus liquidity: the ability to own a slice of something enormous, and to walk away without sinking it.\n\nThat trick — not steam, not silicon — is arguably the quiet foundation under everything since.",
+      "hook": "The stock market wasn't invented to build wealth — it was invented to spread the cost of shipwrecks.",
+      "source": "Lodewijk Petram, The World's First Stock Exchange"
+    },
+    {
+      "id": "cat-seed-009",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "history",
+      "title": "Japan sent half its government abroad to copy everything",
+      "place": "Tokyo",
+      "era": "1871",
+      "story": "In 1853, American gunboats forced Japan open after two centuries of isolation, and the humiliation was clarifying. Where China responded to Western pressure with denial and decline, Japan's new Meiji government did something almost without precedent: in 1871, it sent roughly half of its senior leadership — the Iwakura Mission, over a hundred officials and students — on a world tour lasting nearly two years, with a shopping list for civilization itself.\n\nThey were ruthlessly selective. The navy and merchant marine were modeled on Britain's. The army, and later the constitution, on Prussia's — the Japanese noticed that Germany, a late unifier surrounded by rivals, was the power whose situation most resembled their own. Universities and primary schools drew on America and France; railways, telegraphs, and factories were bought wholesale, along with thousands of foreign engineers on temporary contracts, dismissed once Japanese replacements were trained.\n\nThe slogan was 'fukoku kyōhei' — rich country, strong army. Within one generation, a nation that had been running on swords and rice taxes defeated Qing China; within two, in 1905, it destroyed the Russian fleet at Tsushima — the first time in the modern era an Asian power beat a European empire in full-scale war, a shock felt from Cairo to Calcutta.\n\nPride tells you to invent everything yourself. Japan bet the opposite way: find whoever does it best, copy them exactly, then improve the copy.",
+      "hook": "Japan industrialized in one generation on a simple rule — copying the best isn't weakness, it's the fastest form of ambition.",
+      "source": "Ian Buruma, Inventing Japan"
+    },
+    {
+      "id": "cat-seed-010",
+      "date": "2026-07-11",
+      "type": "insight",
+      "category": "food",
+      "title": "The city where salt traded like gold",
+      "place": "Timbuktu",
+      "era": "1300s",
+      "story": "Deep in the Sahara, at a dead flat waste called Taghaza, buildings were made of salt blocks — walls, mosques, everything — because salt was the only thing there. Slabs of it were cut from ancient lakebeds, loaded two to a camel, and walked for weeks across the desert to the markets of Timbuktu, where the Niger River bends closest to the sands.\n\nThe economics were beautiful and brutal. West Africa's forest belt had gold in absurd abundance — but almost no salt, and in a tropical climate salt is not a seasoning, it's survival: humans die without it, livestock sicken, and it was the only technology for keeping meat and fish from rotting. The Sahara's salt met the savanna's gold at Timbuktu, and in moments of scarcity the exchange rate could reportedly approach weight for weight.\n\nEntire empires — Ghana, Mali, Songhai — rose on the tolls of this trade, and Timbuktu grew rich enough to fund one of the medieval world's great centers of scholarship, with libraries whose manuscripts survive today. The traders' currencies tell the same story elsewhere: Roman soldiers' pay was tied to salt — 'salary' descends from 'sal' — and 'worth his salt' still means worth paying.\n\nBefore oil, before spice, the first strategic commodity was the one no body on Earth can do without.",
+      "hook": "Salt was history's first oil — 'salary' literally means salt money, and empires rose on controlling it.",
+      "source": "Mark Kurlansky, Salt: A World History"
+    }
+  ]
+}

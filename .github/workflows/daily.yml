@@ -1,0 +1,54 @@
+name: Daily content refresh
+
+on:
+  schedule:
+    - cron: "30 1 * * *" # 7:00 AM IST
+  workflow_dispatch:
+    inputs:
+      catalogue_count:
+        description: "Catalogue stories to generate (backfill: run repeatedly with 30)"
+        default: "10"
+        required: false
+      skip_news:
+        description: "Skip news generation (true for backfill runs)"
+        default: "false"
+        required: false
+
+# never let two generation runs race each other on the data files
+concurrency:
+  group: content-generation
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate content
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CATALOGUE_COUNT: ${{ github.event.inputs.catalogue_count || '10' }}
+          SKIP_NEWS: ${{ github.event.inputs.skip_news == 'true' && '1' || '' }}
+        run: node scripts/generate.mjs
+
+      - name: Commit and push
+        run: |
+          git config user.name "dateline-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Content refresh $(date -u +%F)"
+            git pull --rebase origin main
+            git push origin main
+          fi
