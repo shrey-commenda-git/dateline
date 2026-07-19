@@ -13,6 +13,10 @@ on:
         description: "Skip news generation (true for backfill runs)"
         default: "false"
         required: false
+      category:
+        description: "Force all catalogue stories to one category (e.g. ai) — blank rotates normally"
+        default: ""
+        required: false
 
 # never let two generation runs race each other on the data files
 concurrency:
@@ -38,6 +42,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CATALOGUE_COUNT: ${{ github.event.inputs.catalogue_count || '10' }}
           SKIP_NEWS: ${{ github.event.inputs.skip_news == 'true' && '1' || '' }}
+          CATALOGUE_CATEGORY: ${{ github.event.inputs.category || '' }}
         run: node scripts/generate.mjs
 
       - name: Commit and push

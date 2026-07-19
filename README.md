@@ -3,7 +3,7 @@
 Personal micro-learning app. Two feeds:
 
 - **Today's Dispatch** — 5 news stories/day (2 tech, 2 business, 1 finance), fully refreshed every morning.
-- **The Catalogue** — a permanent, ever-growing library of evergreen stories (history, geopolitics, economics, food, wine, coffee, culture). 10 new stories appended daily. Never resets.
+- **The Catalogue** — a permanent, ever-growing library of evergreen stories (history, geopolitics, economics, food, wine, coffee, culture, ai). 10 new stories appended daily. Never resets. The `ai` category covers first-principles ideas and origin stories behind modern computing and AI.
 
 Every story is stamped with a place and time — collecting knowledge across the world and across history.
 

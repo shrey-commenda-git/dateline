@@ -20,7 +20,19 @@ const CATALOGUE_COUNT = clampInt(process.env.CATALOGUE_COUNT, 0, 40, 10);
 const SLEEP_BETWEEN_CALLS_MS = MOCK ? 10 : 5000;
 
 const NEWS_SLOTS = ["tech", "tech", "business", "business", "finance"];
-const CATALOGUE_CATEGORIES = ["history", "geopolitics", "economics", "food", "wine", "coffee", "culture"];
+const CATALOGUE_CATEGORIES = ["history", "geopolitics", "economics", "food", "wine", "coffee", "culture", "ai"];
+const FORCE_CATEGORY = process.env.CATALOGUE_CATEGORY || "";
+
+// per-category briefs where the bare category name isn't guidance enough
+const CATEGORY_HINTS = {
+  ai: `This is the AI & COMPUTING FUNDAMENTALS category: the first-principles ideas and origin stories
+behind today's technology. Think: Shannon inventing information theory, why the transistor beat the
+vacuum tube, backpropagation's decades in the wilderness, why attention replaced recurrence, what a
+GPU actually does and why gamers accidentally funded the AI boom, scaling laws, the design choices
+baked into the internet. Explain the MECHANISM from first principles so a curious reader truly gets
+it — and trace the causal chain to the technology in their pocket today. No hype, no product news,
+no speculation about the future. Era may be recent ("2017") or old ("1948") — the idea's origin.`,
+};
 
 const today = new Date().toISOString().slice(0, 10);
 const todayCompact = today.replaceAll("-", "");
@@ -170,15 +182,16 @@ Task: research TODAY's (${today}) most consequential ${slot.toUpperCase()} news 
 - This is story #${index + 1} of 5 in today's briefing.${avoidTitles.length ? `\n- Do NOT cover the same events as these already-written stories: ${avoidTitles.join(" | ")}` : ""}`;
 }
 
-function cataloguePrompt(category, avoidTitles) {
+function cataloguePrompt(category, avoidEntries, extraAvoid = "") {
+  const hint = CATEGORY_HINTS[category] ? `\n${CATEGORY_HINTS[category]}\n` : "";
   return `${STYLE}
 
-Task: write one evergreen story for the permanent library, category: ${category.toUpperCase()}. 150-350 words — let the story decide its own length. Pick something important and durable: a mechanism, an origin, a causal chain that changed how the world works. Vary geography and era — do NOT default to Western Europe or the 20th century.
+Task: write one evergreen story for the permanent library, category: ${category.toUpperCase()}. 150-350 words — let the story decide its own length. Pick something important and durable: a mechanism, an origin, a causal chain that changed how the world works. Vary geography and era — do NOT default to Western Europe or the 20th century.${hint}
 - era: a short period label like "1600s", "751 AD", "1920s"
 - The reader wants to understand fundamental things: how wealth is created, how power works, why places and cultures are the way they are.
 
-Already in the library — do NOT repeat or closely overlap with any of these:
-${avoidTitles.map((t) => `- ${t}`).join("\n") || "- (library is empty)"}`;
+Already in the library — do NOT repeat the same SUBJECT, even under a different title. Each entry below is "title (place, era)":
+${avoidEntries.map((e) => `- ${e}`).join("\n") || "- (library is empty)"}${extraAvoid}`;
 }
 
 // ------------------------------------------------------------- pipeline
@@ -235,6 +248,26 @@ async function generateNews() {
   console.log(`news.json written (${stories.length} stories, full refresh)`);
 }
 
+/** Token-set Jaccard similarity between two stories — catches same-subject retellings. */
+const DUP_STOPWORDS = new Set("the a an of in to and for was were is are that it its with by from as at on had has have this which but not they their than into when who would could more most one two first world history over about after before between during through century centuries year years".split(" "));
+function storyTokens(s) {
+  return new Set(`${s.title} ${s.story}`.toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/)
+    .filter((w) => w.length > 3 && !DUP_STOPWORDS.has(w)));
+}
+function mostSimilar(story, existing) {
+  const t = storyTokens(story);
+  let best = { score: 0, title: "" };
+  for (const other of existing) {
+    const o = storyTokens(other);
+    let inter = 0;
+    for (const w of t) if (o.has(w)) inter++;
+    const score = inter / (t.size + o.size - inter);
+    if (score > best.score) best = { score, title: other.title };
+  }
+  return best;
+}
+const DUP_THRESHOLD = 0.22; // empirically, true same-subject retellings score >= ~0.22
+
 async function generateCatalogue() {
   if (CATALOGUE_COUNT === 0) return;
   console.log(`\n== The Catalogue (+${CATALOGUE_COUNT} stories) ==`);
@@ -245,16 +278,32 @@ async function generateCatalogue() {
   const dayOffset = Math.floor(Date.parse(today) / 86400000) % CATALOGUE_CATEGORIES.length;
 
   for (let i = 0; i < CATALOGUE_COUNT; i++) {
-    const category = CATALOGUE_CATEGORIES[(dayOffset + i) % CATALOGUE_CATEGORIES.length];
+    const category = FORCE_CATEGORY || CATALOGUE_CATEGORIES[(dayOffset + i) % CATALOGUE_CATEGORIES.length];
     const label = `catalogue ${i + 1}/${CATALOGUE_COUNT} [${category}]`;
     console.log(label);
-    const story = await generateOne({
-      kind: "insight",
-      category,
-      prompt: cataloguePrompt(category, existing.map((s) => s.title)),
-      useWebSearch: false,
-      label,
-    });
+    // avoid-list carries place+era so the model sees the SUBJECT, not just the wording
+    const avoidEntries = existing.map((s) => `${s.title} (${s.place}, ${s.era})`);
+
+    let story;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const extraAvoid = attempt === 0 || !story ? "" :
+        `\n\nYour previous attempt duplicated the subject of "${mostSimilar(story, existing).title}" — pick a COMPLETELY different subject.`;
+      story = await generateOne({
+        kind: "insight",
+        category,
+        prompt: cataloguePrompt(category, avoidEntries, extraAvoid),
+        useWebSearch: false,
+        label,
+      });
+      const sim = mostSimilar(story, existing);
+      if (sim.score < DUP_THRESHOLD) break;
+      if (attempt === 0) {
+        console.log(`  !! "${story.title}" overlaps "${sim.title}" (${sim.score.toFixed(2)}) — regenerating`);
+        await sleep(SLEEP_BETWEEN_CALLS_MS);
+      } else {
+        console.log(`  !! still overlapping after retry (${sim.score.toFixed(2)}) — keeping with warning`);
+      }
+    }
     story.id = nextId("cat", existing);
     existing.push(story); // also feeds the avoid-list for the next iteration
     console.log(`  -> "${story.title}"`);
