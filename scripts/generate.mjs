@@ -31,7 +31,9 @@ vacuum tube, backpropagation's decades in the wilderness, why attention replaced
 GPU actually does and why gamers accidentally funded the AI boom, scaling laws, the design choices
 baked into the internet. Explain the MECHANISM from first principles so a curious reader truly gets
 it — and trace the causal chain to the technology in their pocket today. No hype, no product news,
-no speculation about the future. Era may be recent ("2017") or old ("1948") — the idea's origin.`,
+no speculation about the future. Era may be recent ("2017") or old ("1948") — the idea's origin.
+Depth does NOT mean length: respect the limits strictly — story 150-350 words, title under 12 words,
+place 1-3 words ("Bell Labs", "Mountain View", "Bletchley Park").`,
 };
 
 const today = new Date().toISOString().slice(0, 10);
@@ -232,18 +234,27 @@ async function generateNews() {
   for (const [i, slot] of NEWS_SLOTS.entries()) {
     const label = `news ${i + 1}/${NEWS_SLOTS.length} [${slot}]`;
     console.log(label);
-    const story = await generateOne({
-      kind: "news",
-      category: slot,
-      prompt: newsPrompt(slot, i, stories.map((s) => s.title)),
-      useWebSearch: true,
-      label,
-    });
+    let story;
+    try {
+      story = await generateOne({
+        kind: "news",
+        category: slot,
+        prompt: newsPrompt(slot, i, stories.map((s) => s.title)),
+        useWebSearch: true,
+        label,
+      });
+    } catch (err) {
+      // a 4-story dispatch beats a dead run — skip this slot and keep going
+      console.error(`  ${label}: SKIPPED after all attempts — ${err.message}`);
+      await sleep(SLEEP_BETWEEN_CALLS_MS);
+      continue;
+    }
     story.id = nextId("news", stories);
     stories.push(story);
     console.log(`  -> "${story.title}"`);
     await sleep(SLEEP_BETWEEN_CALLS_MS);
   }
+  if (stories.length === 0) throw new Error("news generation produced zero stories — keeping yesterday's dispatch");
   writeData("news.json", { updated: today, stories });
   console.log(`news.json written (${stories.length} stories, full refresh)`);
 }
@@ -285,24 +296,31 @@ async function generateCatalogue() {
     const avoidEntries = existing.map((s) => `${s.title} (${s.place}, ${s.era})`);
 
     let story;
-    for (let attempt = 0; attempt < 2; attempt++) {
-      const extraAvoid = attempt === 0 || !story ? "" :
-        `\n\nYour previous attempt duplicated the subject of "${mostSimilar(story, existing).title}" — pick a COMPLETELY different subject.`;
-      story = await generateOne({
-        kind: "insight",
-        category,
-        prompt: cataloguePrompt(category, avoidEntries, extraAvoid),
-        useWebSearch: false,
-        label,
-      });
-      const sim = mostSimilar(story, existing);
-      if (sim.score < DUP_THRESHOLD) break;
-      if (attempt === 0) {
-        console.log(`  !! "${story.title}" overlaps "${sim.title}" (${sim.score.toFixed(2)}) — regenerating`);
-        await sleep(SLEEP_BETWEEN_CALLS_MS);
-      } else {
-        console.log(`  !! still overlapping after retry (${sim.score.toFixed(2)}) — keeping with warning`);
+    try {
+      for (let attempt = 0; attempt < 2; attempt++) {
+        const extraAvoid = attempt === 0 || !story ? "" :
+          `\n\nYour previous attempt duplicated the subject of "${mostSimilar(story, existing).title}" — pick a COMPLETELY different subject.`;
+        story = await generateOne({
+          kind: "insight",
+          category,
+          prompt: cataloguePrompt(category, avoidEntries, extraAvoid),
+          useWebSearch: false,
+          label,
+        });
+        const sim = mostSimilar(story, existing);
+        if (sim.score < DUP_THRESHOLD) break;
+        if (attempt === 0) {
+          console.log(`  !! "${story.title}" overlaps "${sim.title}" (${sim.score.toFixed(2)}) — regenerating`);
+          await sleep(SLEEP_BETWEEN_CALLS_MS);
+        } else {
+          console.log(`  !! still overlapping after retry (${sim.score.toFixed(2)}) — keeping with warning`);
+        }
       }
+    } catch (err) {
+      // don't let one stubborn story kill the run — everything saved so far survives
+      console.error(`  ${label}: SKIPPED after all attempts — ${err.message}`);
+      await sleep(SLEEP_BETWEEN_CALLS_MS);
+      continue;
     }
     story.id = nextId("cat", existing);
     existing.push(story); // also feeds the avoid-list for the next iteration
